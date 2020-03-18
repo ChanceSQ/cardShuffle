@@ -158,10 +158,11 @@ export default function App() {
   }
 
   const orderDeck = () => {
-    if(deck.length !== 52) {
-      setJokerText('Add Jokers');
+    if(deck.length === 54) {
+      setDeck([...initialDeck, {suit: '🤡', rank: '🤡', color: 'blue'}, {suit: '🤡', rank: '🤡'} ]);
+    } else {
+      setDeck(initialDeck);
     }
-    setDeck(initialDeck);
     setPosition(0);
   }
 
