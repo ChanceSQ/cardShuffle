@@ -138,7 +138,6 @@ export default function App() {
         ],
         {cancelable: false}
       )
-      console.log('back to start');
     }
   }
 
@@ -168,13 +167,36 @@ export default function App() {
 
   const [jokerText, setJokerText] = useState('Add Jokers');
   const toggleJokers = () => {
-    if(deck.length === 52) {
-      setDeck([...initialDeck, {suit: '🤡', rank: '🤡', color: 'blue'}, {suit: '🤡', rank: '🤡'} ]);
-      setJokerText('Remove Jokers');
-    } else {
-      setDeck(initialDeck);
-      setJokerText('Add Jokers')
-    }
+
+    Alert.alert(
+      'Jokers',
+      "Changing Jokers will reset the deck. Continue?",
+      [
+        {text: 'Cancel'},
+        {text: 'Confirm', onPress:() => {
+          if(deck.length === 52) {
+            setDeck([...initialDeck, {suit: '🤡', rank: '🤡', color: 'blue'}, {suit: '🤡', rank: '🤡'} ]);
+            setPosition(0);
+            setJokerText('Remove Jokers');
+          } else {
+            setDeck(initialDeck);
+            setPosition(0);
+            setJokerText('Add Jokers')
+          }
+        }}
+      ],
+      {cancelable: false}
+    )
+
+    // if(deck.length === 52) {
+    //   setDeck([...initialDeck, {suit: '🤡', rank: '🤡', color: 'blue'}, {suit: '🤡', rank: '🤡'} ]);
+    //   setPosition(0);
+    //   setJokerText('Remove Jokers');
+    // } else {
+    //   setDeck(initialDeck);
+    //   setPosition(0);
+    //   setJokerText('Add Jokers')
+    // }
   }
 
   return (
@@ -204,7 +226,8 @@ const styles = StyleSheet.create({
     width: 300,
     height: 450,
     borderWidth: 1,
-    borderColor: '#999'
+    borderColor: '#999',
+    borderRadius: 10
   },
   rank: {
     fontSize: 50,
