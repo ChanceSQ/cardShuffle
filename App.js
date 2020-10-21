@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, Button, Alert } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 
 // ♠ ♥ ♦ ♣ 
 
@@ -123,10 +125,11 @@ export default function App() {
   ])
   const [position, setPosition] = useState(0);
 
+  const Tab = createBottomTabNavigator();
+
   const nextCard = () => {
     if(position !== (deck.length - 1)) {
       setPosition(position + 1);
-      console.log(position);
     }
     else {
       Alert.alert(
