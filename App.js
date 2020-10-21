@@ -128,12 +128,8 @@ export default function App() {
   const nextCard = () => {
     if (position !== deck.length - 1) {
       setPosition(position + 1);
-<<<<<<< HEAD
     }
     else {
-=======
-    } else {
->>>>>>> af613bc78ed34020ed29ad7ff7cb3d809d215af0
       Alert.alert(
         "End of Deck",
         "You've reached the end of the deck!",
